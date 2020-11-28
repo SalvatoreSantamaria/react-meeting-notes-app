@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import MeetingForm from "./MeetingFrom"
+import MeetingItem from "./MeetingItem"
 
 const api_url = `http://localhost:3001/api/v1/meetings`
 
@@ -10,6 +11,7 @@ class MeetingList extends Component {
     this.state = {
       items: []
     }
+    this.updateMeetingList = this.updateMeetingList.bind(this)
   }
 
   componentDidMount() {
@@ -24,14 +26,26 @@ class MeetingList extends Component {
     })
   }
 
+  //grabbing items in the state and adding them to beginning of the state array, which causes state to rerender
+  updateMeetingList(item) {
+    let _items = this.state.items
+    _items.unshift(item)
+    this.setState({
+      items: _items
+    })
+  }
+
   render() {
     console.log(this.state.items)
     return (
       <div>
-        <MeetingForm />
-        <ul>
-          <li>Meeting 1</li>
-          <li>Meeting 2</li>
+        {/* passing in updateMeetingList function which allows the meeting form to access it */}
+        <MeetingForm api_url={api_url} updateMeetingList={this.updateMeetingList}/>
+        <ul id="meeting_list">
+          {this.state.items.map((item) => (
+            <MeetingItem key={item.id} item={item}/>
+            //Reminder: React needs a unique key <li key={item.id}>{item.subject}</li>
+          ))}
         </ul>
       </div>
     )
