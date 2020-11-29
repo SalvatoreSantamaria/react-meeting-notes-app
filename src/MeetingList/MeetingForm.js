@@ -27,7 +27,7 @@ class MeetingForm extends Component {
       method: "POST",
       mode: "cors",
       body: data
-    }).then(response => response.json()).then(response => this.props.updateMeetingList())
+    }).then(response => response.json()).then(response => this.props.updateMeetingList(response))
   }
 
   handleSubjectChange(event) {
@@ -49,7 +49,7 @@ class MeetingForm extends Component {
             variant="outlined"
             type="text"
             name="meeting[subject]"
-            onChnage={this.handleSubjectChange}
+            onChange={this.handleSubjectChange}
             />
             <Button variant="contained"
             color="primary"
