@@ -7,9 +7,20 @@ import DeleteIcon from "@material-ui/icons/Delete"
 
 const useStyles = makeStyles({
   root: {
-    height: "3em",
+    height: "auto",
     padding: "2em",
     margin: "1em"
+  },
+  paper: {
+    padding: "2em",
+    margin: "1em",
+    textAlign: "justify"
+  },
+  notes: {
+    padding: "1em"
+  },
+  deleteButton: {
+    padding: "1em"
   }
 })
 
@@ -21,10 +32,23 @@ export default function MeetingItem(props) {
 
   return (
     <Grid container spacing={0}>
-      <Grid item xs={9}>
-        <Paper elevation={3} className={classes.root}>
+      <Grid item xs={1}></Grid>
+      <Grid item xs={10}>
+        <Paper elevation={3} className={classes.paper}>
           {props.item.subject}
           <hr />
+          <br />
+          <div className={classes.notes}>
+            {props.item.notes}
+          </div>
+          <hr />
+          <br />
+          <div className={classes.deleteButton}>
+            <p>Action Items:</p> 
+            {props.item.action_items}
+            </div>
+
+          <br />
           <Button 
             variant="contained"
             color="secondary"
@@ -34,10 +58,7 @@ export default function MeetingItem(props) {
           >
             Delete
           </Button>
-          <br></br>
-          {props.item.notes}
-          <br></br>
-          {props.item.action_items}
+
         </Paper>
       </Grid>
     </Grid>
