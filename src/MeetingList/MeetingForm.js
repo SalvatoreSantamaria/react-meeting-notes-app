@@ -16,6 +16,8 @@ class MeetingForm extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubjectChange = this.handleSubjectChange.bind(this);
+    this.handleNotesChange = this.handleNotesChange.bind(this);
+    this.handleActionItemsChange = this.handleActionItemsChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -32,11 +34,29 @@ class MeetingForm extends Component {
       mode: "cors",
       body: data
     }).then(response => response.json()).then(response => this.props.updateMeetingList(response))
+    //reset form fields to empty strings
+    this.setState ({
+      subject: "",
+      notes: "",
+      action_items: ""
+    })
   }
 
+  //These change the state of the form:
   handleSubjectChange(event) {
     this.setState({
       subject: event.target.value
+    })
+  }
+
+  handleNotesChange(event) {
+    this.setState({
+      notes: event.target.value
+    })
+  }
+  handleActionItemsChange(event) {
+    this.setState({
+      action_items: event.target.value
     })
   }
 
@@ -54,9 +74,9 @@ class MeetingForm extends Component {
                       <TextField 
                         id="subject_input"
                         label="Meeting Subject"
-                        variant="outlined"
                         type="text"
                         name="meeting[subject]"
+                        value={this.state.subject}
                         onChange={this.handleSubjectChange}
                         fullWidth
                       />
@@ -65,11 +85,12 @@ class MeetingForm extends Component {
                       <TextareaAutosize
                         id="notes_input"
                         label="Notes"
-                        variant="outlined"
                         type="text"
                         name="meeting[notes]"
+                        value={this.state.notes}
+                        onChange={this.handleNotesChange}
                         style={{ width: "99.5%", borderRadius: "2px"}}
-                        rowsMin={3}
+                        rowsMin={30}
                         placeholder="Notes"
                       />
                     </Grid>
@@ -77,9 +98,11 @@ class MeetingForm extends Component {
                       <TextareaAutosize
                         id="action_items_input"
                         label="Action Items"
-                        variant="outlined"
+                        variant="filled"
                         type="text"
                         name="meeting[action_items]"
+                        value={this.state.action_items}
+                        onChange={this.handleActionItemsChange}
                         style={{ width: "99.5%", borderRadius: "2px"}}
                         rowsMin={3}
                         placeholder="Action Items"
@@ -90,7 +113,7 @@ class MeetingForm extends Component {
                         color="primary"
                         type="submit"
                         style={{height: "100%"}}
-                        >Add Meeting
+                        >Save
                       </Button>
                     </Grid>
                 </Grid>
