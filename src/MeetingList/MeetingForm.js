@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 
 class MeetingForm extends Component {
   constructor(props) {
@@ -38,25 +39,38 @@ class MeetingForm extends Component {
 
   render() {
     return (
-      <div>
-        <form
-          onSubmit={this.handleSubmit}
-          id="meeting_form"
-          autoComplete="off">
-            <TextField 
-            id="subject_input"
-            label="Meeting Subject"
-            variant="outlined"
-            type="text"
-            name="meeting[subject]"
-            onChange={this.handleSubjectChange}
-            />
-            <Button variant="contained"
-            color="primary"
-            type="submit"
-            >Add Meeting</Button>
-        </form>
-      </div>
+      <Grid container>
+        <Grid item xs></Grid>
+          <Grid item xs={10}>
+            <form
+              onSubmit={this.handleSubmit}
+              id="meeting_form"
+              autoComplete="off">
+                <Grid container>
+                    <Grid item xs={10}>
+                      <TextField 
+                        id="subject_input"
+                        label="Meeting Subject"
+                        variant="outlined"
+                        type="text"
+                        name="meeting[subject]"
+                        onChange={this.handleSubjectChange}
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Button variant="contained"
+                        color="primary"
+                        type="submit"
+                        style={{height: "100%"}}
+                        >Add Meeting
+                      </Button>
+                    </Grid>
+                </Grid>
+            </form>
+          </Grid>
+        <Grid item xs></Grid>
+      </Grid>
     )
   }
 }
