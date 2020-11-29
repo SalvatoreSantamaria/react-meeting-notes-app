@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 
 class MeetingForm extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class MeetingForm extends Component {
     this.state = {
       api_url: props.api_url,
       subject: "",
+      notes: "",
+      action_items: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubjectChange = this.handleSubjectChange.bind(this);
@@ -47,7 +50,7 @@ class MeetingForm extends Component {
               id="meeting_form"
               autoComplete="off">
                 <Grid container>
-                    <Grid item xs={10}>
+                    <Grid item xs={12}>
                       <TextField 
                         id="subject_input"
                         label="Meeting Subject"
@@ -56,6 +59,30 @@ class MeetingForm extends Component {
                         name="meeting[subject]"
                         onChange={this.handleSubjectChange}
                         fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextareaAutosize
+                        id="notes_input"
+                        label="Notes"
+                        variant="outlined"
+                        type="text"
+                        name="meeting[notes]"
+                        style={{ width: "99.5%", borderRadius: "2px"}}
+                        rowsMin={3}
+                        placeholder="Notes"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextareaAutosize
+                        id="action_items_input"
+                        label="Action Items"
+                        variant="outlined"
+                        type="text"
+                        name="meeting[action_items]"
+                        style={{ width: "99.5%", borderRadius: "2px"}}
+                        rowsMin={3}
+                        placeholder="Action Items"
                       />
                     </Grid>
                     <Grid item xs={2}>

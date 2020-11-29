@@ -7,7 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 
 const useStyles = makeStyles({
   root: {
-    height: "3em",
+    height: "auto",
     padding: "2em",
     margin: "1em"
   }
@@ -25,6 +25,10 @@ export default function MeetingItem(props) {
         <Paper elevation={3} className={classes.root}>
           {props.item.subject}
           <hr />
+          <br></br>
+          {props.item.notes}
+          <br></br>
+          {props.item.action_items}
           <Button 
             variant="contained"
             color="secondary"
@@ -34,10 +38,7 @@ export default function MeetingItem(props) {
           >
             Delete
           </Button>
-          <br></br>
-          {props.item.notes}
-          <br></br>
-          {props.item.action_items}
+
         </Paper>
       </Grid>
     </Grid>
