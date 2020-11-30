@@ -3,7 +3,8 @@ import MeetingForm from "./MeetingForm"
 import MeetingItem from "./MeetingItem"
 import Grid from "@material-ui/core/Grid"
 
-const api_url = `http://localhost:3001/api/v1/meetings`
+//const api_url = `http://localhost:3001/api/v1/meetings`
+const api_url = `https://rails-meeting-notes-api.herokuapp.com/api/v1/meetings/`
 
 class MeetingList extends Component {
   constructor(props) {
